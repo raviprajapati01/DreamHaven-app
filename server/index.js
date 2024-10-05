@@ -12,6 +12,7 @@ const userRoutes = require("./routes/user.js")
 app.use(cors({
   origin: "http://localhost:3000", // Replace with your frontend URL if different
   methods: ["GET", "POST", "PATCH", "DELETE"], // Specify allowed methods
+  credentials: true,
 }));
 app.use(express.json());
 app.use(express.static("public"));

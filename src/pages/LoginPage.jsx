@@ -4,6 +4,9 @@ import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +18,11 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    console.log("Login data:", { email, password }); // Log input data
+    console.log("Backend URL:", BACKEND_URL); // Log backend URL
+
     try {
-      const response = await fetch ("http://localhost:3001/auth/login", {
+      const response = await fetch (`${BACKEND_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -1,11 +1,14 @@
-import { IconButton } from "@mui/material";
-import { Search, Person, Menu } from "@mui/icons-material";
+// import { IconButton } from "@mui/material";
+import { Person, Menu } from "@mui/icons-material";
 import variables from "../styles/variables.scss";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../styles/Navbar.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setLogout } from "../redux/state";
+
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
 
 
 const Navbar = () => {
@@ -15,9 +18,9 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  const [search, setSearch] = useState("")
+  // const [search, setSearch] = useState("")
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   return (
     <div className="navbar">
@@ -60,7 +63,7 @@ const Navbar = () => {
             <Person sx={{ color: variables.darkgrey }} />
           ) : (
             <img
-              src={`http://localhost:3001/${user.profileImagePath.replace(
+            src={`${BACKEND_URL}/${user.profileImagePath.replace(
                 "public",
                 ""
               )}`}

@@ -8,6 +8,9 @@ import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
+
 const SearchPage = () => {
   const [loading, setLoading] = useState(true)
   const { search } = useParams()
@@ -17,7 +20,7 @@ const SearchPage = () => {
 
   const getSearchListings = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/properties/search/${search}`, {
+      const response = await fetch(`${BACKEND_URL}/properties/search/${search}`, {
         method: "GET"
       })
 

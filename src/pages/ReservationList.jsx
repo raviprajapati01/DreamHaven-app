@@ -7,6 +7,9 @@ import { setReservationList } from "../redux/state";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
+
 const ReservationList = () => {
   const [loading, setLoading] = useState(true);
   const userId = useSelector((state) => state.user._id);
@@ -17,7 +20,7 @@ const ReservationList = () => {
   const getReservationList = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/reservations`,
+        `${BACKEND_URL}/users/${userId}/reservations`,
         {
           method: "GET",
         }

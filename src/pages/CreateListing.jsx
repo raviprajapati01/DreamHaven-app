@@ -12,6 +12,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer"
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
+
 const CreateListing = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
@@ -136,7 +139,7 @@ const CreateListing = () => {
       }
 
       /* Send a POST request to server */
-      const response = await fetch("http://localhost:3001/properties/create", {
+      const response = await fetch(`${BACKEND_URL}/properties/create`, {
         method: "POST",
         body: listingForm,
       });

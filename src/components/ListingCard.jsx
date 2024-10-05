@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
 const ListingCard = ({
   listingId,
   creator,
@@ -50,7 +52,7 @@ const ListingCard = ({
   const patchWishList = async () => {
     if (user?._id !== creator._id) {
     const response = await fetch(
-      `http://localhost:3001/users/${user?._id}/${listingId}`,
+      `${BACKEND_URL}/${user?._id}/${listingId}`,
       {
         method: "PATCH",
         header: {
@@ -78,7 +80,7 @@ const ListingCard = ({
           {listingPhotoPaths?.map((photo, index) => (
             <div key={index} className="slide">
               <img
-                src={`http://localhost:3001/${photo?.replace("public", "")}`}
+                src={`${BACKEND_URL}/${photo?.replace("public", "")}`}
                 alt={`Img ${index + 1}`}
               />
               <div

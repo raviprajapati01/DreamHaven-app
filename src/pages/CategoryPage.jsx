@@ -7,6 +7,8 @@ import { setListings } from "../redux/state";
 import Loader from "../components/Loader";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
 
 const CategoryPage = () => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ const CategoryPage = () => {
   const getFeedListings = async () => {
     try {
       const response = await fetch(
-          `http://localhost:3001/properties?category=${category}`,
+          `${BACKEND_URL}/properties?category=${category}`,
         {
           method: "GET",
         }

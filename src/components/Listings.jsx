@@ -5,6 +5,8 @@ import ListingCard from "./ListingCard";
 import Loader from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../redux/state";
+const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+
 
 const Listings = () => {
   const dispatch = useDispatch();
@@ -18,8 +20,8 @@ const Listings = () => {
     try {
       const response = await fetch(
         selectedCategory !== "All"
-          ? `http://localhost:3001/properties?category=${selectedCategory}`
-          : "http://localhost:3001/properties",
+          ? `${BACKEND_URL}/properties?category=${selectedCategory}`
+          : `${BACKEND_URL}/properties`,
         {
           method: "GET",
         }

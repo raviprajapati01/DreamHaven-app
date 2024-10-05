@@ -12,6 +12,7 @@ const userRoutes = require("./routes/user.js")
 app.use(cors({
   origin: "http://localhost:3000", // Replace with your frontend URL if different
   methods: ["GET", "POST", "PATCH", "DELETE"], // Specify allowed methods
+  credentials: true,
 }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -23,7 +24,7 @@ app.use("/bookings", bookingRoutes)
 app.use("/users", userRoutes)
 
 /* MONGOOSE SETUP */
-const PORT = 3001;
+const PORT =process.env.PORT || 3001;
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {

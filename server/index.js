@@ -12,7 +12,6 @@ const userRoutes = require("./routes/user.js")
 app.use(cors({
   origin: "http://localhost:3000", // Replace with your frontend URL if different
   methods: ["GET", "POST", "PATCH", "DELETE"], // Specify allowed methods
-  credentials: true,
 }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -25,8 +24,7 @@ app.use("/users", userRoutes)
 
 /* MONGOOSE SETUP */
 const PORT =process.env.PORT || 3001;
-mongoose
-  .connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
   })

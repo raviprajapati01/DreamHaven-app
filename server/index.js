@@ -13,7 +13,7 @@ const { dbconnection } = require("./config/dbconnection.js");
 const PORT = process.env.PORT||3001;
 
 app.use(cors({
-  origin: "http://localhost:3000", // Replace with your frontend URL if different
+  origin: "*", // Replace with your frontend URL if different
   methods: ["GET", "POST", "PATCH", "DELETE"], // Specify allowed methods
 }));
 app.use(express.json());

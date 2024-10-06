@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const multer = require("multer");
-const { CreateListing, FechListing, SearchListing } = require("../controllers/listing");
+const { CreateListing, FechListing, SearchListing, detailsListing } = require("../controllers/listing");
 
 /* Configuration Multer for File Upload */
 const storage = multer.diskStorage({
@@ -24,8 +24,6 @@ router.get("/", FechListing)
 router.get("/search/:search", SearchListing)
 
 /* LISTING DETAILS */
-router.get("/:listingId", async (req, res) => {
-  
-});
+router.get("/:listingId", detailsListing);
 
 module.exports = router

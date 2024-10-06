@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import "../styles/Register.scss";
 
-const BACKEND_URL = process.env.BACKEND_URL
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://dreamhaven-app-1.onrender.com"
 
 
 const RegisterPage = () => {
@@ -42,7 +42,7 @@ const RegisterPage = () => {
         register_form.append(key, formData[key])
       }
 
-      const response = await fetch(`${BACKEND_URL}http://localhost:3001/auth/register`, {
+      const response = await fetch(`${BACKEND_URL}/auth/register`, {
         method: "POST",
         body: register_form
       })

@@ -106,12 +106,36 @@ exports.SearchListing = async (req, res) => {
     }
 }
 
-exports.DeatailsListing = async (req, res) => {
+// exports.detailsListing = async (req, res) => {
+//     try {
+//         const { listingId } = req.params;
+//         const listing = await Listing.findById(listingId).populate("creator");
+//         res.status(202).json(listing);
+//     } catch (err) {
+//         res.status(404).json({ message: "Listing not found!", error: err.message });
+//     }
+// }
+
+const mongoose = require("mongoose");
+
+exports.detailsListing = async (req, res) => {
     try {
         const { listingId } = req.params;
+
+        // Check if listingId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(listingId)) {
+            return res.status(400).json({ message: "Invalid Listing ID" });
+        }
+
         const listing = await Listing.findById(listingId).populate("creator");
-        res.status(202).json(listing);
+
+        if (!listing) {
+            return res.status(404).json({ message: "Listing not found!" });
+        }
+
+        res.status(200).json(listing);
     } catch (err) {
-        res.status(404).json({ message: "Listing not found!", error: err.message });
+        res.status(500).json({ message: "Server error", error: err.message });
     }
 }
+

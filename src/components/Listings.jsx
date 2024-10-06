@@ -5,8 +5,7 @@ import ListingCard from "./ListingCard";
 import Loader from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../redux/state";
-const BACKEND_URL = process.env.BACKEND_URL
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://dreamhaven-app-1.onrender.com"
 
 const Listings = () => {
   const dispatch = useDispatch();

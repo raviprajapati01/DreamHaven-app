@@ -13,7 +13,7 @@ import Footer from "../components/Footer"
 
 import enUS from 'date-fns/locale/en-US'; // Import the locale
 
-const BACKEND_URL = process.env.BACKEND_URL
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://dreamhaven-app-1.onrender.com"
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -23,29 +23,32 @@ const ListingDetails = () => {
 
   console.log("listing id is:", listingId);
 
- const getListingDetails = async () => {
-  try {
-    const response = await fetch(`${BACKEND_URL}/${listingId}`);
-    
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
+  const getListingDetails = async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/properties/${listingId}`);
 
-    const data = await response.json();
-    setListing(data);
-  } catch (err) {
-    console.log("Fetch Listing Details Failed", err.message);
-  } finally {
-    setLoading(false); // Ensure loading state is set to false after fetch
-  }
-};
+
+      console.log("responce is: ", response)
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setListing(data);
+    } catch (err) {
+      console.log("Fetch Listing Details Failed", err.message);
+    } finally {
+      setLoading(false); // Ensure loading state is set to false after fetch
+    }
+  };
 
 
   useEffect(() => {
     getListingDetails();
   }, []);
 
-  console.log( "liating is: ",listing)
+  console.log("liating is: ", listing)
 
 
   /* BOOKING CALENDAR */
@@ -76,7 +79,7 @@ const ListingDetails = () => {
       console.error("Invalid data for booking");
       return;
     }
-  
+
     try {
       const bookingForm = {
         customerId,
@@ -86,7 +89,9 @@ const ListingDetails = () => {
         endDate: dateRange[0].endDate.toDateString(),
         totalPrice: listing.price * dayCount,
       };
-  
+
+      console.log("form data is:", bookingForm)
+
       const response = await fetch(`${BACKEND_URL}/bookings/create`, {
         method: "POST",
         headers: {
@@ -94,7 +99,9 @@ const ListingDetails = () => {
         },
         body: JSON.stringify(bookingForm),
       });
-  
+
+      console.log("responce is booking is ", response)
+
       if (response.ok) {
         navigate(`/${customerId}/trips`);
       } else {
@@ -104,7 +111,7 @@ const ListingDetails = () => {
       console.log("Submit Booking Failed.", err.message);
     }
   };
-  
+
 
   return loading ? (
     <Loader />
@@ -180,7 +187,7 @@ const ListingDetails = () => {
             <h2>How long do you want to stay?</h2>
             <div className="date-range-calendar">
               <DateRange ranges={dateRange} onChange={handleSelect}
-              locale={enUS} />
+                locale={enUS} />
               {dayCount > 1 ? (
                 <h2>
                   ${listing.price} x {dayCount} nights

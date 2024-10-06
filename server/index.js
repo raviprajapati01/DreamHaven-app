@@ -10,7 +10,7 @@ const bookingRoutes = require("./routes/booking.routes.js")
 const userRoutes = require("./routes/user.routes.js");
 const { dbconnection } = require("./config/dbconnection.js");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||3001;
 
 app.use(cors({
   origin: "http://localhost:3000", // Replace with your frontend URL if different

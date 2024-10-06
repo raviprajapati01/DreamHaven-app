@@ -7,7 +7,7 @@ import { setListings } from "../redux/state";
 import Loader from "../components/Loader";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
-const BACKEND_URL = process.env.BACKEND_URL
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://dreamhaven-app-1.onrender.com"
 
 
 const CategoryPage = () => {

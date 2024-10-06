@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
 
-const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+const BACKEND_URL = process.env.BACKEND_URL
 
 const ListingCard = ({
   listingId,

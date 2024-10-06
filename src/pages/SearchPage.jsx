@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
 
-const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+const BACKEND_URL = process.env.BACKEND_URL
 
 
 const SearchPage = () => {

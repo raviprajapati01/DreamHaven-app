@@ -13,8 +13,7 @@ import Footer from "../components/Footer"
 
 import enUS from 'date-fns/locale/en-US'; // Import the locale
 
-const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
-
+const BACKEND_URL = process.env.BACKEND_URL
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);

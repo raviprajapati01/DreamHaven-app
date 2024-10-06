@@ -7,7 +7,7 @@ import "../styles/Navbar.scss";
 import { Link } from "react-router-dom";
 import { setLogout } from "../redux/state";
 
-const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+const BACKEND_URL = process.env.BACKEND_URL
 
 
 

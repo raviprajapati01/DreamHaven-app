@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer"
 
-const BACKEND_URL = process.env.BACKEND_URL || "https://dreamhaven.onrender.com"
+const BACKEND_URL = process.env.BACKEND_URL
 
 
 const CreateListing = () => {
